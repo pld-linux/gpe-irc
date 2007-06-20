@@ -3,13 +3,15 @@ Summary(pl.UTF-8):	Klient IRC GPE
 Name:		gpe-irc
 Version:	0.08
 Release:	1
-License:	GPL
+License:	GPL v2+
 Group:		Applications/Communications
 Source0:	http://gpe.linuxtogo.org/download/source/%{name}-%{version}.tar.gz
 # Source0-md5:	0f934a03d8c4d18a9a977ff704a741c5
 URL:		http://gpe.linuxtogo.org/
 BuildRequires:	gtk+2-devel >= 2:2.10.7
 BuildRequires:	libgpewidget-devel
+BuildRequires:	pkgconfig
+BuildRequires:	sqlite-devel
 Requires:	gpe-icons
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -24,6 +26,8 @@ Klient IRC GPE dla urządzeń wbudowanych.
 
 %build
 %{__make} \
+	CC="%{__cc}" \
+	CFLAGS="%{rpmcflags}" \
 	PREFIX=%{_prefix}
 
 %install
@@ -39,6 +43,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc ChangeLog
 %attr(755,root,root) %{_bindir}/gpe-irc
 %{_desktopdir}/gpe-irc.desktop
 %dir %{_datadir}/gpe/pixmaps/default/irc
