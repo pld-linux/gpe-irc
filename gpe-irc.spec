@@ -28,6 +28,7 @@ Klient IRC GPE dla urządzeń wbudowanych.
 %{__make} \
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags}" \
+	LDFLAGS="%{rpmldflags}" \
 	PREFIX=%{_prefix}
 
 %install
